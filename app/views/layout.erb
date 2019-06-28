@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
 
-    <title>TeacherRepo</title>
+    <title>The Teacher's Repository</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -15,10 +15,25 @@
   </head>
   <body>
     <div class="wrapper">
+      <nav>
+        <ul>
+          <% if logged_in? %>
+            <li>Welcome, <%= current_user.username %></li>
+            <li><a href="/tweet">Post a Tweet!</a></li>
+            <li><a href="/logout">Logout</a></li>
+          <% else %>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/signup">Sign Up</a></li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="container">
 
         <%= yield %>
 
-      <footer class="branding">
+        <footer class="branding">
         <small>&copy; 2019 <strong>TeacherRepo</strong></small>
       </footer>
     </div>

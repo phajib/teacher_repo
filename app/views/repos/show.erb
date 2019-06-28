@@ -1,0 +1,9 @@
+<h1>Edit Your Repository:</h1>
+<h2><%= @repo.content %></h2>
+
+  <form method="POST" action="/repos/<%= @tweet.id %>">
+    <input type="hidden" id="hidden" name="_method" value="PATCH">
+    <p>Content:<input type="textarea" name="content" id="content">
+    <br>
+    <input type="submit" name="submit" id="submit" value="Edit Tweet">
+  </form>
