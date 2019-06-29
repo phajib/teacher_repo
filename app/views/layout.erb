@@ -11,30 +11,39 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="/stylesheets/main.css" />
+    <link rel="stylesheet" href="/stylesheets/navbar.css" />
   </head>
+
   <body>
-    <div class="wrapper">
       <nav>
         <ul>
           <% if logged_in? %>
-            <li>Welcome, <%= current_user.username %></li>
-            <li><a href="/tweet">Post a Tweet!</a></li>
-            <li><a href="/logout">Logout</a></li>
+            <div class="wrapper">
+              <li>Welcome, <%= current_user.username %></li>
+              <li><a href="/repos">Enter a new Repo</a></li>
+              <li><a href="/logout">Logout</a></li>
+            </div>
           <% else %>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/signup">Sign Up</a></li>
+            <div class="topnav">
+              <a class="active" href="#home">Home</a>
+              <div class="login-container">
+                <form action="/action_page.php">
+                  <input type="text" placeholder="Username" name="username">
+                  <input type="text" placeholder="Password" name="password">
+                  <button type="submit">Login</button>
+                </form>
+              </div>
+            </div>
           <% end %>
         </ul>
       </nav>
-    </div>
 
     <div class="container">
 
         <%= yield %>
 
         <footer class="branding">
-        <small>&copy; 2019 <strong>TeacherRepo</strong></small>
+        <small><center>&copy; 2019 <strong>TeacherRepo</strong></center></small>
       </footer>
     </div>
 
