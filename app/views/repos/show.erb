@@ -1,9 +1,12 @@
-<h1>Edit Your Repository:</h1>
-<h2><%= @repo.content %></h2>
+<h3>Repo:</h3>
+<p><%=@repo.id%>: <%= @repo.content %></p>
 
-  <form method="POST" action="/repos/<%= @tweet.id %>">
+<form action="/repos/<%= @repo.id %>/edit" method="POST">
     <input type="hidden" id="hidden" name="_method" value="PATCH">
-    <p>Content:<input type="textarea" name="content" id="content">
-    <br>
-    <input type="submit" name="submit" id="submit" value="Edit Tweet">
-  </form>
+    <input type="submit" id="Edit Repo" value="Edit Repo">
+</form>
+
+<form action="/repos/<%= @repo.id %>/delete" method="POST">
+    <input type="hidden" id="hidden" name="_method" value="DELETE">
+    <input type="submit" id="Delete Repo" value="Delete Repo">
+</form>

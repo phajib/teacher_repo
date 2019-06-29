@@ -1,11 +1,11 @@
-<h3><%= @user.username %>!</h3>
+<h3><%= @teacher.username %>!</h3>
 
 <a href="/repos/new">New Repository?</a><br>
 <a href="/logout">Log Out</a>
 
 <h4>Repos:</h4>
   <ul>
-    <% @user.repos.each do |r| %>
+    <% teacher.repos.each do |r| %>
       <li>"#{r.id}"<%= r.content %></li>
     <% end %>
   </ul>

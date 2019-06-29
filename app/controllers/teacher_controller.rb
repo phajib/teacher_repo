@@ -3,7 +3,7 @@ class TeacherController < ApplicationController
         if logged_in?
             redirect to '/repos'
         else
-            erb :'/users/signup'
+            erb :'/teachers/signup'
         end
     end
 
@@ -11,9 +11,9 @@ class TeacherController < ApplicationController
         if params[:username].empty? || params[:email].empty? || params[:password].empty?
             redirect to '/signup'
         else
-            @user = User.create(:username => params[:username], :email => params[:email], :password => params[:password])
-            @user.authenticate(params[:password])
-            session[:user_id] = @user.id
+            @teacher = Teacher.create(:username => params[:username], :email => params[:email], :password => params[:password])
+            @teacher.authenticate(params[:password])
+            session[:user_id] = @teacher.id
             redirect '/repos'
         end
     end
@@ -22,14 +22,14 @@ class TeacherController < ApplicationController
         if logged_in?
           redirect '/repos'
         else
-          erb :'/users/login'
+          erb :'/teachers/login'
         end
     end
 
     post '/login' do
-        @user = User.find_by(:username => params[:username])
-        if @user && @user.authenticate(params[:password])
-            session[:user_id] = @user.id
+        @teacher = Teacher.find_by(:username => params[:username])
+        if @teacher && @teacher.authenticate(params[:password])
+            session[:user_id] = @teacher.id
             redirect '/reposs'
         else
             redirect '/login'
@@ -43,10 +43,10 @@ class TeacherController < ApplicationController
             redirect '/login'
     end
 
-    get '/users/:slug' do
-        @user = User.find_by_slug(params[:slug])
-        if @user
-            erb :'/users/show'
+    get '/teachers/:slug' do
+        @teacher = User.find_by_slug(params[:slug])
+        if @teacher
+            erb :'/teachers/show'
         else
             redirect '/repos'
         end
